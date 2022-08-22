@@ -1,0 +1,8 @@
+opinion_modifiers = {
+	dangerous_sentiments = {
+		value = -50
+	}
+	the_americans_have_threatening_ambitions = {
+		value = -100
+	}
+}

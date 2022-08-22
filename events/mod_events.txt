@@ -1,0 +1,175 @@
+add_namespace = bkhmi_usa
+
+country_event = {
+	id = bkhmi_usa.1
+	title = bkhmi_usa.1.t
+	desc = bkhmi_usa.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = bkhmi_usa.1.a
+
+		ai_chance = {
+			base = 0
+
+			modifier = {
+				has_opinion = {
+					target = FROM
+					value > 99
+				}
+				add = 99
+			}
+		}
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = ENG
+					is_in_faction_with = USA
+				}
+				capital_scope = {
+					is_on_continent = europe
+				}
+				NOT = {
+					is_subject_of = ENG
+					is_subject_of = USA
+					tag = ENG
+					tag = USA
+				}
+			}
+			leave_faction = yes
+			add_opinion_modifier = {
+				target = ENG
+				modifier = faction_traitor
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = the_americans_have_threatening_ambitions
+			}
+		}
+
+		USA = {
+			news_event = {
+				id = bkhmi_usa.2
+				hours = 72
+			}
+			set_country_flag = ENG_has_accepted
+		}
+
+		ENG = {
+			set_country_flag = ENG_has_accepted
+			remove_opinion_modifier = {
+				target = FROM
+				modifier = dangerous_sentiments
+			}
+		}
+	}
+
+	option = {
+		name = bkhmi_usa.1.b
+		
+		ai_chance = {
+			base = 100
+			modifier = {
+				has_opinion = {
+					target = FROM
+					value > 99
+				}
+				add = -99
+			}
+		}
+
+		USA = {
+			news_event = {
+				id = bkhmi_usa.2
+				hours = 72
+			}
+			set_country_flag = ENG_declined
+		}
+
+		ENG = {
+			set_country_flag = ENG_declined
+		}
+	}
+}
+news_event = {
+	id = bkhmi_usa.2
+	title = {
+		text = bkhmi_usa.2.t.a
+		trigger = {
+			USA = {
+				has_country_flag = ENG_has_accepted
+			}
+		}
+	}
+	title = {
+		text = bkhmi_usa.2.t
+	}
+	desc = {
+		text = bkhmi_usa.2.d.a
+		trigger = {
+			USA = {
+				has_country_flag = ENG_declined
+			}
+		}
+	}
+	desc = {
+		text = bkhmi_usa.2.d.b
+	}
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = bkhmi_usa.2.a
+		trigger = {
+			tag = USA
+			has_country_flag = ENG_has_accepted
+		}
+	}
+	option = {
+		name = bkhmi_usa.2.b
+		trigger = {
+			tag = ENG
+			has_country_flag = ENG_has_accepted
+		}
+	}
+	option = {
+		name = bkhmi_usa.2.c
+		trigger = {
+			tag = USA
+			has_country_flag = ENG_declined
+		}
+	}
+	option = {
+		name = bkhmi_usa.2.d
+		trigger = {
+			tag = ENG
+			has_country_flag = ENG_declined
+		}
+	}
+	option = {
+		name = bkhmi_usa.2.e
+		trigger = {
+			capital_scope = {
+				is_on_continent = europe
+			}
+			NOT = {
+				tag = ENG
+				is_subject_of = USA
+			}
+		}
+	}
+	option = {
+		name = bkhmi_usa.2.f
+		trigger = {
+			NOT = {
+				capital_scope = {
+					is_on_continent = europe
+				}
+				tag = USA
+			}
+		}
+	}
+}

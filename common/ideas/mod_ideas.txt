@@ -1,0 +1,25 @@
+ideas = {
+	country = {
+		european_intervention = {
+			modifier = {
+				war_support_weekly = 0.01
+				offensive_war_stability_factor = 0.2
+				stability_weekly = -0.01
+			}
+		}
+		disorganized_war_effort_ger = {
+			targeted_modifier = {
+				tag = GER
+				attack_bonus_against = -0.1
+				defense_bonus_against = -0.1
+			}
+		}
+		disorganized_war_effort_fra = {
+			targeted_modifier = {
+				tag = FRA
+				attack_bonus_against = -0.1
+				defense_bonus_against = -0.1
+			}
+		}
+	}
+}
